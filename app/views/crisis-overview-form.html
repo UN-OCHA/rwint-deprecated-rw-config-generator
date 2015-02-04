@@ -1,41 +1,85 @@
 <form>
   <h1>Crisis Overview</h1>
-  <div ng-repeat="country in content">
-    <h2>{{country.title}}</h2>
-    <div class="form-group">
-      <label>Country Name</label>
-      <input type="text" class="form-control" ng-model="country.title" />
-    </div>
-    <div class="form-group">
-      <label>Group Key</label>
-      <input type="text" class="form-control" ng-model="country.key" />
-    </div>
-    <div class="form-group">
-      <label>Content</label>
-      <textarea rows="8" class="form-control" ng-model="country.content"></textarea>
-    </div>
-    <div class="form-group">
-      <label>Data Source</label>
-      <input type="text" class="form-control" ng-model="country.dataSource" />
-    </div>
-    <div class="well">
-      <h3>Indicators</h3>
-      <div ng-repeat="indicator in country.indicator">
-        <div class="form-group">
-          <label>Figure</label>
-          <input type="text" class="form-control" ng-model="indicator.figure" />
-        </div>
-        <div class="form-group">
-          <label>Quantifier</label>
-          <input type="text" class="form-control" ng-model="indicator.quantifier" />
-        </div>
-        <div class="form-group">
-          <label>Description</label>
-          <input type="text" class="form-control" ng-model="indicator.description" />
-        </div>
+  <h2>{{config.title}}</h2>
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" ng-model="config.title" />
+  </div>
+  <div class="form-group">
+    <label>Data Source</label>
+    <input type="text" class="form-control" ng-model="config.dataSource" />
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Map</div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label>src</label>
+        <input type="text" class="form-control" ng-model="config.map.src" />
+      </div>
+      <div class="form-group">
+        <label>alt</label>
+        <input type="text" class="form-control" ng-model="config.map.alt" />
       </div>
     </div>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-heading"><h2>Content</h2></div>
+
+      <div class="list-group">
+        <div class="list-group-item" ng-repeat="content in config.content">
+          <h3>{{content.title}}</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="content.title" />
+          </div>
+          <div class="form-group">
+            <label>Content</label>
+            <textarea rows="8" class="form-control" ng-model="content.content"></textarea>
+          </div>
+        </div>
+      </div>
+    <div class="panel-body">
+      <button class="btn" ng-click="addContent()">Add Content</button>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><h2>Indicators</h2></div>
+    <div class="list-group">
+      <div class="list-group-item" ng-repeat="indicator in config.indicator">
+        <h3>{{indicator.title}}</h3>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" ng-model="indicator.title" />
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h2>Data</h2></div>
+          <div class="list-group-item" ng-repeat="data in indicator.data">
+            <div class="form-group">
+              <label>Figure</label>
+              <input type="text" class="form-control" ng-model="data.figure" />
+            </div>
+            <div class="form-group">
+              <label>Quantifier</label>
+              <input type="text" class="form-control" ng-model="data.quantifier" />
+            </div>
+            <div class="form-group">
+              <label>description</label>
+              <input type="text" class="form-control" ng-model="data.description" />
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <button class="btn" ng-click="addData($index)">Add Data</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <button class="btn" ng-click="addIndicator()">Add Indicator</button>
+    </div>
+  </div>
+
   <div class="form-group">
     <input type="submit" value="Submit" class="btn btn-default" ng-click="submit()" />
   </div>
