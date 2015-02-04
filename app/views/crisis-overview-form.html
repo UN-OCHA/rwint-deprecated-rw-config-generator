@@ -1,0 +1,42 @@
+<form>
+  <h1>Crisis Overview</h1>
+  <div ng-repeat="country in content">
+    <h2>{{country.title}}</h2>
+    <div class="form-group">
+      <label>Country Name</label>
+      <input type="text" class="form-control" ng-model="country.title" />
+    </div>
+    <div class="form-group">
+      <label>Group Key</label>
+      <input type="text" class="form-control" ng-model="country.key" />
+    </div>
+    <div class="form-group">
+      <label>Content</label>
+      <textarea rows="8" class="form-control" ng-model="country.content"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Data Source</label>
+      <input type="text" class="form-control" ng-model="country.dataSource" />
+    </div>
+    <div class="well">
+      <h3>Indicators</h3>
+      <div ng-repeat="indicator in country.indicator">
+        <div class="form-group">
+          <label>Figure</label>
+          <input type="text" class="form-control" ng-model="indicator.figure" />
+        </div>
+        <div class="form-group">
+          <label>Quantifier</label>
+          <input type="text" class="form-control" ng-model="indicator.quantifier" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" ng-model="indicator.description" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-default" ng-click="submit()" />
+  </div>
+</form>
